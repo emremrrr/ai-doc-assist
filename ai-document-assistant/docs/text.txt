@@ -1,0 +1,196 @@
+Az 204
+
+Storage Queue vs Service Bus - The Core Mental Model
+First Principle
+Ask yourself:
+Do I need enterprise messaging features?
+If YES → Service Bus
+If NO → Storage Queue
+• Azure Storage Queue
+Think: Simple task processing
+Used for:
+	•	  Background jobs
+	•	  Simple decoupling
+	•	  Cheap messaging
+Features:
+	•	  At-least-once delivery
+	•	  Visibility timeout
+	•	  No ordering guarantee
+	•	  No sessions
+	•	  No duplicate detection
+	•	  No dead-letter queue
+Very basic.
+• Azure Service Bus
+Think: Enterprise messaging system
+Used for:
+	•	  Ordered processing
+	•	  Transactions
+	•	  Duplicate detection
+	•	  Sessions
+	•	  Dead-letter queue
+	•	  Advanced routing
+	•	  Topics & subscriptions
+Much richer feature set.
+Exam Trick
+If you see:
+	•	  Sessions
+	•	  Duplicate detection
+	•	  maxbeliverycount
+	•	  Dead-letter queue
+	•	  FIFO requirement
+The answer is almost always → Service Bus
+If you see:
+	•	  Visibility timeout
+	•	  Simple background processing
+	•	  Cheap solution
+The answer is → Storage Queue
+I
+2
+Visibility Timeout vs Sessions vs Dead-letter
+You confused these multiple times. Let's connect them logically.
+o Visibility Timeout (Storage Queue concept)
+Mental model:
+"Hide the message while I'm processing it."
+Flow:
+1. Worker receives message
+	1.	
+	2.	   Message becomes invisible for X seconds
+	3.	   If worker fails and doesn't delete it
+	4.	   Message becomes visible again
+If processing takes longer than visibility timeout →
+Duplicate processing happens.
+So the fix is:
+Increase visibility timeout
+NOT sessions.
+NOT duplicate detection.
+• Sessions (Service Bus only)
+Sessions solve:
+"Process messages for the same entity in order."
+Example:
+Customer A → 3 messages
+Customer B → 5 messages
+Sessions ensure:
+	•	  A messages stay ordered
+	•	  B messages stay ordered
+	•	  A and B can process in parallel
+Sessions = ordered grouping.
+I
+maxDeliveryCount (Service Bus)
+Mental model:
+"How many times should I retry before giving up?"
+If exceeded Message goes to Dead-letter queue automatically.
+• Dead-letter Queue (Service Bus)
+Messages go here when:
+	•	
+	•	  maDeliveryCount exceeded
+	•	  Explicitly dead-lettered
+	•	  Expired
+Storage Queue does NOT have built-in DLQ.
+E Front Door vs Application Gateway vs Traffic Manager
+This confusion is extremely common.
+Let's fix it with layers.
+Traffic Manager
+Think: DNS Router
+	•	  Routes users to region
+	•	  Based on DNS
+	•	  No SSL termination
+	•	  No WAF
+	•	  No Layer 7 inspection
+Exam trigger words:
+	•	  DNS-based routing
+	•	  Failover between regions
+Application Gateway
+Think: Regional Layer 7 Load Balancer
+	•	  Inside one region
+	•	  WAF support
+	•	  SSL termination
+	•	  Path-based routing
+Exam trigger:
+• Regional L7
+	•	
+	•	  Internal VNET apps
+	•	  Backend pools
+Front Door
+Think: Global L7 entry point
+	•	  Global routing
+	•	  WAF
+	•	  SSL
+	•	  Path-based routing
+	•	  CDN-like performance
+Exam trigger:
+	•	  Global L7
+	•	  Web Application Firewall
+	•	  Multiple regions
+	•	  Fast worldwide routing
+Quick Memory Hack
+If global + L7 + WAF Front Door
+If regional + L7 + WAF App Gateway
+If DNS only → Traffic Manager
+Blob Types - Clear Separation
+You confused all3.
+• Block Blob
+Most common type,
+Used for:
+	•	  Files
+	•	
+	•	  Images
+	•	  Large uploads
+	•	  Streaming uploads
+Supports:
+	•	  Upload in blocks
+	•	  Resume upload
+If question says:
+	•	  Large file
+	•	  Resume upload
+	•	  Standard file storage
+Answer → Block Blob
+• Append Blob
+Used for:
+	•	  Logging
+	•	  Append-only operations
+You can only add to end.
+If question says:
+	•	  Logging
+	•	  Continuous append
+Answer → Append Blob
+I
+• Page Blob
+Used for:
+	•	  Virtual machine disks
+	•	  Random read/write
+If question says:
+• Random write
+	•	
+	•	  VHD
+	•	  512-byte pages
+Answer → Page Blob
+• Archive
+Cold storage tier.
+NOT a blob type for usage logic.
+Identity Confusion (Critical for AZ-204)
+You mixed these concepts.
+Let's separate clearly.
+• Easy Auth
+Purpose:
+Authenticate USERS into your App Service.
+It protects your API.
+It does NOT let your app access Azure resources.
+Think:
+User→ App
+• Managed Identity
+Purpose:
+Let your app access Azure resources securely.
+No secrets stored.
+Think:
+App → Azure resource
+• Azure AD B2C
+
+Purpose:
+Customer identity system for external users.
+Sign up / sign in flows.
+Think:
+Public users → identity provider
+• Mutual TLS (mILS)
+Purpose:
+Both client and server authenticate with certificates.
+If backend requires certificate authentication → miLs.
