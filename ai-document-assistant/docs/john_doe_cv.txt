@@ -1,0 +1,53 @@
+John Doe
+Software Engineer
+
+Email: john.doe@example.com
+Phone: +1 (555) 123-4567
+Location: New York, NY
+LinkedIn: linkedin.com/in/johndoe
+GitHub: github.com/johndoe
+
+PROFILE
+Software Engineer with experience building backend APIs, database-driven applications, and cloud-ready services. Skilled in C#, .NET, Python, REST APIs, SQL, and modern software engineering practices. Interested in scalable backend systems, automation, and AI-enabled applications.
+
+SKILLS
+- Languages: C#, Python, SQL, JavaScript
+- Backend: ASP.NET Core, FastAPI, REST APIs, Entity Framework Core
+- Databases: SQL Server, PostgreSQL, SQLite
+- Cloud & DevOps: Azure basics, Docker, GitHub Actions, CI/CD basics
+- Practices: Unit testing, integration testing, clean code, SOLID principles, Agile/Scrum
+
+EXPERIENCE
+Software Engineer - ABC Technology
+Jan 2022 - Present
+- Built and maintained REST APIs using .NET and SQL Server.
+- Improved API performance by optimizing queries and reducing unnecessary database calls.
+- Developed background jobs for scheduled processing and data synchronization.
+- Collaborated with product owners and QA engineers to deliver features in Agile sprints.
+- Added logging and error handling to improve production support and troubleshooting.
+
+Junior Software Developer - XYZ Solutions
+Jun 2020 - Dec 2021
+- Developed internal web applications using C#, ASP.NET, and JavaScript.
+- Created SQL queries, stored procedures, and reports for business users.
+- Fixed bugs, supported deployments, and improved application reliability.
+- Participated in code reviews and followed team coding standards.
+
+PROJECTS
+AI Document Assistant
+- Built a prototype document assistant using Python FastAPI and RAG architecture.
+- Implemented document upload, text extraction, chunking, embeddings, and question answering.
+- Returned AI answers with basic source references.
+
+Task Management API
+- Created a REST API for managing tasks, users, and project boards.
+- Used authentication, validation, pagination, and structured logging.
+
+EDUCATION
+Bachelor of Science in Computer Science
+Example University, 2016 - 2020
+
+CERTIFICATIONS
+- Microsoft Azure Fundamentals - Planned
+- Python for AI Applications - In Progress
+

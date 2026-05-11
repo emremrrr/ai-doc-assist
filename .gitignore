@@ -216,3 +216,28 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+cat >> .gitignore << 'EOF'
+
+# AI Document Assistant - local runtime/generated data
+uploads/
+chroma_db/
+*.bin
+
+# Local database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+EOF
