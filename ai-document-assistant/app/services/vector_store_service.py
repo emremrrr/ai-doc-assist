@@ -35,7 +35,7 @@ def search_relevant_chunks(question: str, max_results: int = 3) -> list[dict]:
 
     matches = []
 
-    docs = results.get("docs", [[]])[0]
+    docs = results.get("documents", [[]])[0]
     metadatas = results.get("metadatas", [[]])[0]
     distances = results.get("distances", [[]])[0]
 
